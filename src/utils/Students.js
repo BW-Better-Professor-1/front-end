@@ -1,16 +1,19 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
-const Projects = pr => {
+const Students = props => {
     return (
-      <div className="project-list">
-        {pr.projects.map(project => (
-          <div className="project" key={project.id}>
-            <h2>{project.title}</h2>
-            <p>{project.notes}</p>
+      <div className="student-list">
+        {props.students.map(student => (
+          <Link to={`/projectlist/${student.studentId}`}>
+          <div className="student" key={student.studentId}>
+            <h2>{student.name}</h2>
+            <p>{student.email}</p>
           </div>
+          </Link>
         ))}
       </div>
     );
   };
 
-export default Projects;
+export default Students;

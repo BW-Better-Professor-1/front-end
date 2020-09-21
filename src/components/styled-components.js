@@ -61,12 +61,14 @@ export const Head = styled.header`
 export const HeadContainer = styled.div`
 display: flex;
 justify-content: center;
+margin-bottom: -4rem;
 `
 
 export const HLeft = styled.div`
   display: flex;
   padding: .5rem;
   align-items: center;
+  margin-top: -5rem;
 `;
 
 export const HRight = styled.div`
@@ -74,6 +76,8 @@ export const HRight = styled.div`
   display: flex;
   align-items: center;
   margin-right: 4%;
+  font-size: 1.3rem;
+  
   `
 
 export const Input = styled.input`
@@ -101,8 +105,9 @@ export const Nav = styled.div`
   background-color: #0a2738;
   height: 50px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-around;
   align-items: center;
+
 `;
 
 export const NavLinksContainer = styled.div `
