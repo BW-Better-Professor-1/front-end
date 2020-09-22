@@ -26,6 +26,7 @@ function App() {
             <Link className='link' to={`/dashboard`} >Dashboard</Link>
             <Link className="link" to={`/viewstudents`}>Students</Link>
             <Link className="link" to={`/viewreminders`}>My Reminders</Link>
+            <Link className="link" to={`/viewprojects/:id`}>Projects</Link>
           </NavLinksContainer>
         </Nav>
           {/* <Navigation /> */}

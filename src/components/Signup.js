@@ -60,6 +60,20 @@ function Signup()  {
         <FormPage>
             <FormField onSubmit={handleSubmit(onSubmit)}>
                 <h1>Create an Account</h1>
+                {/* Full Name */}
+                <FormInfo>
+                    <label htmlFor='name'>Full Name</label>
+                    <Input 
+                        type ='name'
+                        name ='name'
+                        id = 'name'
+                        onChange={changeUser}
+                        value={user}
+                        placeholder='Enter full name'
+                        ref={register({required: "Must enter full name"})}
+                    />
+                    {errors.name && console.log('Signup Name error: ', errors.name) && <p>{errors.name.message}</p>}
+                </FormInfo>
                 {/* Email */}
                 <FormInfo>
                     <label htmlFor='email'>Email</label>

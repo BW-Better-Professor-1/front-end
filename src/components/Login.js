@@ -50,9 +50,9 @@ const Login = (props) => {
         <FormField className="loginForm" onSubmit={handleSubmit(onSubmit)}>
           <h1>Log In</h1>
           <FormInfo>
-          <label htmlFor="name">Username</label>
-          <Input className="styleInput3" id="name" placeholder="Enter Username Here" name="name" ref={register({required : true })} />
-          {errors.username && console.log('Login Username error: ', errors.username) && <p>{errors.username.message}</p>}
+          <label htmlFor="email">Email</label>
+          <Input className="styleInput3" id="email" placeholder="Enter Email Here" name="email" ref={register({required : true })} />
+          {errors.email && console.log('Login Email error: ', errors.email) && <p>{errors.email.message}</p>}
 
           <label htmlFor="password">Password</label>
           <Input className="styleInput3" id="password" placeholder="Enter Password Here" name="password" type="password" ref={register({required: true })} />

@@ -43,14 +43,56 @@ const ReminderForm = ({postTo}) => {
     return (
         <form onSubmit={submitForm}>
             <FormInfo>
-            <label htmlFor=''title>Reminder</label>
+            <label htmlFor='name'>Student Name</label>
             <Input 
-                id= "title"
+                id= "name"
                 type="text"
-                name= "title"
+                name= "name"
                 onChange={handleChanges}
-                value={reminder.title}
+                value={reminder.name}
             />
+
+            <label htmlFor='date'>Reminder Date</label>
+            <Input
+            
+                id= "date"
+                type="text"
+                name= "date"
+                onChange={handleChanges}
+                value={reminder.date}
+                
+            />
+            <label htmlFor='time'>Reminder Time</label>
+            <Input
+            
+                id= "time"
+                type="text"
+                name= "time"
+                onChange={handleChanges}
+                value={reminder.time}
+                
+            />
+            <label htmlFor='info'>Reminder Text</label>
+            <Input
+            
+                id= "info"
+                type="text"
+                name= "info"
+                onChange={handleChanges}
+                value={reminder.info}
+                
+            />
+            <label htmlFor='check'>Send to student</label>
+            <Input
+            
+                id= "check"
+                type="checkbox"
+                name= "check"
+                onChange={handleChanges}
+                value={reminder.check}
+                
+            />
+
             </FormInfo>
 {/* 
             <label htmlFor='body'>Reminder Details</label>
