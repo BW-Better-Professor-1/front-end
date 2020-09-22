@@ -1,4 +1,4 @@
-import { ERROR, FILTER_INTO, FILTER_FROM, SET_ARRAY } from "../actions"
+import { SET_ERROR, FILTER_INTO, FILTER_FROM, SET_ARRAY } from "../actions"
 
 const initialState = {
     students: [],
@@ -20,7 +20,9 @@ export default function(state = initialState, action) {
             return {...state, [action.payload.store]: state[action.payload.store].filter(item => {
                 return item.id !== action.payload.id;
             })}
-        case ERROR: // action.data: error
+        case SET_ERROR: // action.data: error
             return {...state, error: action.data};
+        default:
+            return state;
     }
 }

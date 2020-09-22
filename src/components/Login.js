@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, {useState} from 'react';
 import {useHistory} from 'react-router-dom';
-import {axiosWithAuth} from '../utils/axiosWithAuth';
+import axiosWithAuth from '../utils/axiosWithAuth';
 import {useForm} from 'react-hook-form';
 import {LoginForm, FormField, FormInfo, Button, Input} from './styled-components';
 
@@ -18,7 +18,7 @@ const Login = (props) => {
     } = useForm();
 
     const [user, setUser] = useState({
-      username: '',
+      name: '',
       password: ''
     })
 
@@ -32,7 +32,7 @@ const Login = (props) => {
       const values = getValues();
       console.log(values);
       axiosWithAuth()
-      .post(`/auth/login`, values)
+      .post(`auth/login`, values)
       .then(res=> {
           console.log("login successfull", res)
           localStorage.setItem("token", res.data.token);
@@ -50,8 +50,8 @@ const Login = (props) => {
         <FormField className="loginForm" onSubmit={handleSubmit(onSubmit)}>
           <h1>Log In</h1>
           <FormInfo>
-          <label htmlFor="username">Username</label>
-          <Input className="styleInput3" id="username" placeholder="Enter Username Here" name="username" ref={register({required : true })} />
+          <label htmlFor="name">Username</label>
+          <Input className="styleInput3" id="name" placeholder="Enter Username Here" name="name" ref={register({required : true })} />
           {errors.username && console.log('Login Username error: ', errors.username) && <p>{errors.username.message}</p>}
 
           <label htmlFor="password">Password</label>
