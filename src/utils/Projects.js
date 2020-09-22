@@ -6,8 +6,8 @@ const Projects = pr => {
       <div className="project-list">
         {pr.projects.map(project => (
           <div className="project" key={project.id}>
-            <h2>{project.title}</h2>
-            <p>{project.notes}</p>
+            <h2>{project.project_name}</h2>
+            <p>{project.project_description}</p>
           </div>
         ))}
       </div>

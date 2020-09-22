@@ -24,9 +24,10 @@ function App() {
           <NavLinksContainer>
             <Link className='link' to={`/Signup`}>SignUp</Link>
             <Link className='link' to={`/dashboard`} >Dashboard</Link>
-            <Link className="link" to={`/viewstudents`}>Students</Link>
+            <Link className="link" to={`/viewstudents`}>My Students</Link>
             <Link className="link" to={`/viewreminders`}>My Reminders</Link>
-            <Link className="link" to={`/viewprojects/:id`}>Projects</Link>
+            <Link className="link" to={`/viewprojects`}>My Projects</Link>
+            
           </NavLinksContainer>
         </Nav>
           {/* <Navigation /> */}
@@ -37,8 +38,9 @@ function App() {
           <Route path='/signup' component={Signup} />
           <PrivateRoute path='/dashboard' component={Dashboard}/>
           <PrivateRoute path='/viewstudents' component={StudentList}/>
-          <PrivateRoute path='/viewprojects/:id' component={ProjectList}/>
+          <PrivateRoute path='/viewprojects' component={ProjectList}/>
           <PrivateRoute path='/viewreminders' component={ReminderList}/>
+
         </Switch>
 
     </Router>
