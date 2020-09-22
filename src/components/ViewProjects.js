@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import AddProject from '../utils/EditProject';
 import Projects from '../utils/Projects';
-import {axiosWithAuth} from '../utils/axiosWithAuth';
+import axiosWithAuth from '../utils/axiosWithAuth';
 import {FormField, LoginForm} from './styled-components';
 
 

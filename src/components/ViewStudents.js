@@ -1,7 +1,7 @@
 import React, {useState ,useEffect} from 'react';
 import StudentForm from '../utils/EditStudent';
 import Students from '../utils/Students';
-import { axiosWithAuth } from '../utils/axiosWithAuth';
+import axiosWithAuth from '../utils/axiosWithAuth';
 import { FormField, LoginForm } from './styled-components';
 
 function StudentList () {

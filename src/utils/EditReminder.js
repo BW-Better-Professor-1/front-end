@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { axiosWithAuth } from "./axiosWithAuth";
+import axiosWithAuth from "./axiosWithAuth";
 import {useHistory} from 'react-router-dom';
 import {LoginForm, FormField, FormInfo, Button, Input} from '../components/styled-components';
 

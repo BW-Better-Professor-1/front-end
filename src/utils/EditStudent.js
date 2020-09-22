@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {useHistory} from 'react-router-dom';
-import { axiosWithAuth } from "./axiosWithAuth";
+import axiosWithAuth from "./axiosWithAuth";
 import {LoginForm, FormField, FormInfo, Button, Input} from '../components/styled-components';
 
 const StudentForm = props => {

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import AddReminder from '../utils/EditReminder';
 import Reminders from '../utils/Reminders';
-import { axiosWithAuth } from '../utils/axiosWithAuth';
+import axiosWithAuth from '../utils/axiosWithAuth';
 import { FormField, LoginForm } from './styled-components';
 
 
