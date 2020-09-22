@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {useHistory} from 'react-router-dom';
 import axiosWithAuth from "./axiosWithAuth";
 import {LoginForm, FormField, FormInfo, Button, Input} from '../components/styled-components';
+import { DATA_STUDENTS } from "../store/actions";
 
 const StudentForm = props => {
     const history = useHistory('');
@@ -24,15 +25,16 @@ const StudentForm = props => {
         }
         console.log(newStudent);
      
-        axiosWithAuth().post('/students', newStudent)
+        props.postTo(DATA_STUDENTS, newStudent);
+        /*axiosWithAuth().post('/students', newStudent)
         .then(response =>{
             console.log('New Student Created: ', response)
-            props.setTrigger(!props.trigger)
+            //props.setTrigger(!props.trigger)
             history.push('/studentlist')
         })
         .catch(err => {
             console.log(`Error: ${err}`)
-        })
+        })*/
         setStudent({studentName: "", studentEmail: ""});
     };
 

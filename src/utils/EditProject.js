@@ -24,7 +24,7 @@ const ProjectForm = ({id, postTo}) => {
         }
         console.log(newProject)
 
-        postTo(); // calls an action (passed from ViewProjects) that sends the POST request, then adds the response to state
+        postTo(DATA_PROJECTS, newProject); // calls an action (passed from ViewProjects) that sends the POST request, then adds the response to state
 
         /*axiosWithAuth().post('/projects', newProject)
         .then(response => {
