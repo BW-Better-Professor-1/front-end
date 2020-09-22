@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {useHistory} from 'react-router-dom';
 import axios from 'axios';
-import {axiosWithAuth} from '../utils/axiosWithAuth';
+import axiosWithAuth from '../utils/axiosWithAuth';
 
 import {useForm} from 'react-hook-form';
 import {FormPage, FormField, FormInfo, Button, Input} from "./styled-components"
@@ -38,8 +38,8 @@ function Signup()  {
 
     const onSubmit = () => {
         (password === confirmPassword) ? ( //<--IF THIS THEN, -->
-            axiosWithAuth().post('/auth/register', {
-                'username': email.toString(),
+            axiosWithAuth().post('auth/register', {
+                'name': email.toString(),
                 'password': password.toString(),
             })
             .then(response => {
