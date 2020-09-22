@@ -13,6 +13,7 @@ function StudentList ({students}) { // see ViewProject for comments on Redux sta
     const id = localStorage.getItem('professorID')
     /*useEffect(() => {
         axiosWithAuth().get(`users/${id}/students`)
+        
         .then(response =>{
             console.log('response', response)
             setStudents(response.data)

@@ -48,13 +48,25 @@ const ProjectForm = ({id, postTo}) => {
                 value={project.title}
             />
 
-            <label htmlFor='notes'>Project Details</label>
-            <Input 
-                id= "notes"
+            <label htmlFor='date'>Project Due Date</label>
+            <Input
+            
+                id= "date"
                 type="text"
-                name= "notes"
+                name= "date"
                 onChange={handleChanges}
-                value={project.notes}
+                value={project.date}
+                
+            />
+            <label htmlFor='reminder'>Reminders</label>
+            <Input
+            
+                id= "reminder"
+                type="text"
+                name= "reminder"
+                onChange={handleChanges}
+                value={project.reminder}
+                
             />
             </FormInfo>
             <Button type='submit'>Add Project</Button>

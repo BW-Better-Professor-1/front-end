@@ -2,13 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 export const Button = styled.button`
-  padding: .3rem;
+  padding: 1rem;
   border-radius: 10px;
-  background-color: #2196F3;
   width: 10rem;
-  border-style: none;
-  color: white;
-  transition: .25s;
   text-transform: capitalize;
   background: royalblue;
   color: white;
@@ -17,8 +13,6 @@ export const Button = styled.button`
   font-size: 1.4rem;
   font-weight: bold;
   transition: .25s;
-  padding: 1rem ;
-  border-radius: 10px;
   border: solid 1px #ddd;
   text-align: center;
   &:hover {
@@ -51,7 +45,7 @@ export const FormPage = styled.div`
 
 export const Head = styled.header`
   width: 90%;
-  height: 11rem;
+  height: 9rem;
   display: flex;
   margin-bottom: 2rem;
   align-items: center;
@@ -86,7 +80,7 @@ export const Input = styled.input`
   width: 30rem;
   margin-bottom: 0;
   &:focus {
-    border-color: dodgerblue;
+    border-color: royalblue;
   }
 `;
 
