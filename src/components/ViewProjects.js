@@ -3,14 +3,15 @@ import AddProject from '../utils/EditProject';
 import Projects from '../utils/Projects';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import {FormField, LoginForm} from './styled-components';
+import { postTo } from '../store/actions';
 
-
-function ProjectList (pr) {
-    const [trigger, setTrigger] = useState(false);
-    const [projects, setProjects] = useState([]);
-
-    useEffect(() => {
-        axiosWithAuth().get(`students/${pr.match.params.id}/projects`)
+function ProjectList ({projects}) { // props here are linked by connect() to the Redux store
+    //const [trigger, setTrigger] = useState(false);
+    //const [projects, setProjects] = useState([]);
+    const {id} = useParams();
+    
+    /*useEffect(() => {
+        axiosWithAuth().get(`students/${id}/projects`)
         .then(response => {
             console.log('respone', response)
             setProjects(response.data)
@@ -19,16 +20,14 @@ function ProjectList (pr) {
             console.log('error: ', err)
         })
 
-    },[trigger])
+    },[trigger])*/
 
     return( 
 
         <LoginForm>
             <FormField>
                 <h1>My Projects</h1>
-                <AddProject id={pr.match.params.id} trigger={trigger} setTrigger={setTrigger}
-                setProjects={setProjects}
-                />
+                <AddProject id={id} postTo={postTo} />
                 <Projects projects={projects}/>
 
             </FormField>
@@ -36,4 +35,10 @@ function ProjectList (pr) {
     )
 }
 
-export default ProjectList
+export default connect((state) => { return {
+    //props
+    projects: state.projects,
+}},{
+    //actionMakers
+    postTo,
+})(ProjectList);
