@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
-import {axiosWithAuth} from './axiosWithAuth';
+import axiosWithAuth from './axiosWithAuth';
 import {LoginForm, FormField, FormInfo, Button, Input} from '../components/styled-components';
 import Projects from './Students';
+import { DATA_PROJECTS } from '../store/actions';
 
-const ProjectForm = pr => {
+const ProjectForm = ({id, postTo}) => {
 
     const [project, setProject] = useState({
         title: "",
@@ -18,18 +19,20 @@ const ProjectForm = pr => {
     const submitForm = e => {
         e.preventDefault();
         const newProject ={
-            student_id: pr.id,
+            student_id: id,
             title: project.title,
             notes: project.notes
         }
         console.log(newProject)
 
-        axiosWithAuth().post('/projects', newProject)
+        postTo(DATA_PROJECTS, newProject); // calls an action (passed from ViewProjects) that sends the POST request, then adds the response to state
+        
+        /*axiosWithAuth().post('/projects', newProject)
         .then(response => {
             console.log('New project added to student: ', response)
             pr.setTrigger(!pr.trigger)
             
-        })
+        })*/
         setProject({title: "", notes: ""});
     };
 

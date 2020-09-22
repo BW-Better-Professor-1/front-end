@@ -1,11 +1,8 @@
 import axios from "axios";
 
-export const axiosWithAuth = () => {
-    const token = window.localStorage.getItem('token');
-    return axios.create({
-        headers: {
-            authorization: token
-        },
-    baseURL: "" // todo: fill in real baseURL from backend
-    });
-};
+export default () => axios.create({
+    headers: {
+        Authorization: localStorage.getItem("token"),
+    },
+    baseURL: "https://bw-better-professor-backend.herokuapp.com/api/"
+})

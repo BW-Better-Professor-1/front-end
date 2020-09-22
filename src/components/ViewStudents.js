@@ -1,15 +1,17 @@
 import React, {useState ,useEffect} from 'react';
 import StudentForm from '../utils/EditStudent';
 import Students from '../utils/Students';
-import { axiosWithAuth } from '../utils/axiosWithAuth';
+import axiosWithAuth from '../utils/axiosWithAuth';
 import { FormField, LoginForm } from './styled-components';
+import { postTo, putTo, deleteFrom } from '../store/actions';
+import {connect} from "react-redux";
 
-function StudentList () {
+function StudentList ({students}) { // see ViewProject for comments on Redux state
 
-    const [students, setStudents] = useState([]);
-    const [trigger, setTrigger] = useState(false);
+    //const [students, setStudents] = useState([]);
+    //const [trigger, setTrigger] = useState(false);
     const id = localStorage.getItem('professorID')
-    useEffect(() => {
+    /*useEffect(() => {
         axiosWithAuth().get(`users/${id}/students`)
         
         .then(response =>{
@@ -19,14 +21,14 @@ function StudentList () {
         .catch(err =>{
             console.log('error: ', err)
         })
-    },[trigger])
+    },[trigger])*/
 
     return(
         <LoginForm>
         <FormField>
       
             <h1>My Students</h1>
-            <StudentForm trigger={trigger} setTrigger={setTrigger} />
+            <StudentForm postTo={postTo} />
             <Students students={students}/>
       
         </FormField>
@@ -34,4 +36,12 @@ function StudentList () {
     )
 }
 
-export default StudentList;
+export default connect((state) => { return {
+    //props
+    students: state.students,
+}},{
+    //actionMakers
+    postTo,
+    putTo,
+    deleteFrom,
+})(StudentList);

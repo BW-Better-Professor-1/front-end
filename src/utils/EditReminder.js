@@ -1,10 +1,11 @@
 import React, {useState} from "react";
-import { axiosWithAuth } from "./axiosWithAuth";
+import axiosWithAuth from "./axiosWithAuth";
 import {useHistory} from 'react-router-dom';
 import {LoginForm, FormField, FormInfo, Button, Input} from '../components/styled-components';
+import { DATA_REMINDERS } from "../store/actions";
 
 
-const ReminderForm = props => {
+const ReminderForm = ({postTo}) => {
     const history = useHistory('');
     const [reminder, setReminder] = useState({
         title: "",
@@ -23,18 +24,19 @@ const ReminderForm = props => {
             message: reminder.title,
             
         }
-
+        
         console.log(newReminder)
 
-        axiosWithAuth().post('/reminders', newReminder)
+        postTo(DATA_REMINDERS, newReminder);
+        /*axiosWithAuth().post('/reminders', newReminder)
         .then(response => {
             console.log('New reminder added to messages: ', response)
-            props.setTrigger(!props.trigger)
+            //props.setTrigger(!props.trigger)
             history.push('/reminderlist')
         })
         .catch(err => {
             console.log(`Here is the error: ${err}`)
-        })
+        })*/
         setReminder({title: "", body: ""});
     };
 
