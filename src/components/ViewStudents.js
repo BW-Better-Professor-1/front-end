@@ -4,6 +4,7 @@ import Students from '../utils/Students';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import { FormField, LoginForm } from './styled-components';
 import { postTo, putTo, deleteFrom } from '../store/actions';
+import {connect} from "react-redux";
 
 function StudentList ({students}) { // see ViewProject for comments on Redux state
 

@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import axiosWithAuth from "./axiosWithAuth";
 import {useHistory} from 'react-router-dom';
 import {LoginForm, FormField, FormInfo, Button, Input} from '../components/styled-components';
+import { DATA_REMINDERS } from "../store/actions";
 
 
 const ReminderForm = ({postTo}) => {
@@ -23,7 +24,7 @@ const ReminderForm = ({postTo}) => {
             message: reminder.title,
             
         }
-
+        
         console.log(newReminder)
 
         postTo(DATA_REMINDERS, newReminder);

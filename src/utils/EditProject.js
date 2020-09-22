@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import axiosWithAuth from './axiosWithAuth';
 import {LoginForm, FormField, FormInfo, Button, Input} from '../components/styled-components';
 import Projects from './Students';
+import { DATA_PROJECTS } from '../store/actions';
 
 const ProjectForm = ({id, postTo}) => {
 
@@ -25,7 +26,7 @@ const ProjectForm = ({id, postTo}) => {
         console.log(newProject)
 
         postTo(DATA_PROJECTS, newProject); // calls an action (passed from ViewProjects) that sends the POST request, then adds the response to state
-
+        
         /*axiosWithAuth().post('/projects', newProject)
         .then(response => {
             console.log('New project added to student: ', response)

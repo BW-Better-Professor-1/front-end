@@ -4,6 +4,8 @@ import Projects from '../utils/Projects';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import {FormField, LoginForm} from './styled-components';
 import { postTo, putTo, deleteFrom } from '../store/actions';
+import { useParams } from 'react-router';
+import {connect} from "react-redux";
 
 function ProjectList ({projects}) { // props here are linked by connect() to the Redux store
     //const [trigger, setTrigger] = useState(false); // Redux state is global, so will automatically trigger re-renders where appropriate

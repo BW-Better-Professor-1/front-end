@@ -4,6 +4,7 @@ import Reminders from '../utils/Reminders';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import { FormField, LoginForm } from './styled-components';
 import { postTo, putTo, deleteFrom } from '../store/actions';
+import {connect} from "react-redux";
 
 function ReminderList ({reminders}) { // see ViewProject for comments on Redux state
     //const [trigger, setTrigger] = useState(false);
