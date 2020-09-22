@@ -58,6 +58,14 @@ const StudentForm = props => {
                 onChange={handleChanges}
                 value={student.studentEmail}
             />
+            <label htmlFor='confirmStudentEmail'>Confirm Student Email</label>
+            <Input 
+                id= "confirmStudentEmail"
+                type="text"
+                name= "confirmStudentEmail"
+                onChange={handleChanges}
+                value={student.confirmStudentEmail}
+            />
             </FormInfo>
             <Button type='submit'>Add Student</Button>
         </form>
