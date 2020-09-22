@@ -11,6 +11,8 @@ import reducer from "./store/reducers";
 
 const store = createStore(reducer, applyMiddleware(thunk))
 
+console.log(store);
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>

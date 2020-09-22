@@ -91,11 +91,11 @@ export const Input = styled.input`
 `;
 
 export const LoginForm = styled.div `
-    disply: block;
+    display: block;
     box-sizing: border-box;
     width: 100%;
     border-radius: 4px;
-    padding 10px 15px;
+    padding: 10px 15px;
     margin-bottom: 10px;
     font-size: 14px;
 `;

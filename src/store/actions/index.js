@@ -2,8 +2,8 @@ import axiosWithAuth from "../../utils/axiosWithAuth"
 
 export const SET_ARRAY = "SET_ARRAY";
 export const FILTER_INTO = "FILTER_INTO";
-export const FILTER_OUT = "FILTER_OUT";
-export const ERROR = "ERROR";
+export const FILTER_FROM = "FILTER_FROM";
+export const SET_ERROR = "SET_ERROR";
 
 export const DATA_STUDENTS = "students";
 export const DATA_PROJECTS = "projects";
@@ -80,7 +80,7 @@ export const deleteFrom = (store, id) => {
     return(dispatch) => {
         axiosWithAuth().delete(`${endpoints.store}/${id}`)
         .then(response => {
-            dispatch({type:FILTER_OUT, payload: {store: store, data: response.data}});
+            dispatch({type:FILTER_FROM, payload: {store: store, data: response.data}});
         })
         .catch(error => {
             console.log(error);
