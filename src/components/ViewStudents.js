@@ -11,6 +11,7 @@ function StudentList () {
     const id = localStorage.getItem('professorID')
     useEffect(() => {
         axiosWithAuth().get(`users/${id}/students`)
+        
         .then(response =>{
             console.log('response', response)
             setStudents(response.data)

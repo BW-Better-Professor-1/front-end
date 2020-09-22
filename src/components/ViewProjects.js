@@ -10,7 +10,8 @@ function ProjectList (pr) {
     const [projects, setProjects] = useState([]);
 
     useEffect(() => {
-        axiosWithAuth().get(`students/${pr.match.params.id}/projects`)
+        axiosWithAuth().get(`students/${pr.match.params.id}/projects `)
+        
         .then(response => {
             console.log('respone', response)
             setProjects(response.data)

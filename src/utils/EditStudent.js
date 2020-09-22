@@ -24,7 +24,8 @@ const StudentForm = props => {
         }
         console.log(newStudent);
      
-        axiosWithAuth().post('/students', newStudent)
+        axiosWithAuth().post('/students ', newStudent)
+         
         .then(response =>{
             console.log('New Student Created: ', response)
             props.setTrigger(!props.trigger)
