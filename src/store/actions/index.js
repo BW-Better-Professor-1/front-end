@@ -13,7 +13,7 @@ export const DATA_REMINDERS = "reminders";
 const endpoints = {
     [DATA_STUDENTS]: "students",
     [DATA_PROJECTS]: "projects",
-    [DATA_REMINDERS]: "reminders",
+    [DATA_REMINDERS]: "messages",
 }
 
 export const getInitialData = () => {
@@ -48,9 +48,10 @@ export const getInitialData = () => {
 }
 
 export const postTo = (store, data) => {
-    let endpoint = endpoints.store;
+    let endpoint = endpoints[store];
     if(store === "students") endpoint = `students/register`;
     if(store === "projects") endpoint = `students/${data.student_id}/add-project`
+    if(store === "reminders") endpoint = `messages/${data.professor_id}`
 
     //console.log("POST", store, endpoint, data);
 
