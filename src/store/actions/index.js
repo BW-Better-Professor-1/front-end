@@ -3,6 +3,7 @@ import axiosWithAuth from "../../utils/axiosWithAuth"
 export const SET_ARRAY = "SET_ARRAY";
 export const FILTER_INTO = "FILTER_INTO";
 export const FILTER_FROM = "FILTER_FROM";
+export const APPEND = "APPEND";
 export const SET_ERROR = "SET_ERROR";
 
 export const DATA_STUDENTS = "students";
@@ -51,10 +52,13 @@ export const postTo = (store, data) => {
     if(store === "students") endpoint = `students/register`;
     if(store === "projects") endpoint = `students/${data.student_id}/add-project`
 
+    console.log("POST", store, endpoint, data);
+
     return(dispatch) => {
         axiosWithAuth().post(endpoint, data)
         .then(response => {
-            dispatch({type: FILTER_INTO, payload: {store: store, data: response.data}});
+            console.log(response);
+            dispatch({type: APPEND, payload: {store: store, data: response.data}});
         })
         .catch(error => {
             console.log(error);
