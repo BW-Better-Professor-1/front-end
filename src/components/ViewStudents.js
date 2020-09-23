@@ -29,7 +29,7 @@ function StudentList ({students}) { // see ViewProject for comments on Redux sta
       <>
             <h1>My Students</h1>
             <Students students={students}/>
-            <StudentForm postTo={postTo} />
+            <StudentForm />
             
       
         </>
