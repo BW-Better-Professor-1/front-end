@@ -70,6 +70,7 @@ const ViewStudent = ({students, putTo}) => {
             />
             </FormInfo>
             <Button type='submit'>Save Student</Button>
+            <Link to="viewstudents"><Button>Back to Students</Button></Link>
         </form>
     )
 }

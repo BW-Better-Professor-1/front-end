@@ -4,6 +4,7 @@ import { DATA_PROJECTS } from '../store/actions';
 import { postTo, putTo, deleteFrom } from '../store/actions';
 import {connect} from "react-redux";
 import { useParams } from 'react-router';
+import { Link } from 'react-router-dom';
 
 const defaultValues = {
     project_name: "",
@@ -72,6 +73,7 @@ const ViewProject = ({projects, putTo}) => {
             />
             </FormInfo>
             <Button type='submit'>Save Project</Button>
+            <Link to="viewprojects"><Button>Back to Projects</Button></Link>
         </form>
     )
 }
