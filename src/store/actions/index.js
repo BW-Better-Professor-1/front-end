@@ -69,7 +69,7 @@ export const postTo = (store, data) => {
 
 export const putTo = (store, data) => {
     return(dispatch) => {
-        axiosWithAuth().put(`${endpoints.store}/${data.id}`, data)
+        axiosWithAuth().put(`${endpoints[store]}/${data.id}`, data)
         .then(response => {
             dispatch({type:FILTER_INTO, payload: {store: store, data: response.data}});
         })

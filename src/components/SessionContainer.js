@@ -6,6 +6,8 @@ import StudentList from './ViewStudents';
 import ProjectList from './ViewProjects';
 import ReminderList from './ViewReminders';
 import { getInitialData } from '../store/actions';
+import ViewStudent from './ViewStudent';
+import ViewProject from './ViewProject';
 
 const SessionContainer = ({getInitialData}) => {
     useEffect(() => {
@@ -15,9 +17,11 @@ const SessionContainer = ({getInitialData}) => {
     return (
         <>
             <PrivateRoute path='/dashboard' component={Dashboard}/>
-            <PrivateRoute path='/viewstudents' component={StudentList}/>
-            <PrivateRoute path='/viewprojects' component={ProjectList}/>
-            <PrivateRoute path='/viewreminders' component={ReminderList}/>
+            <PrivateRoute path='/viewstudents/:id' component={ViewStudent}/>
+            <PrivateRoute exact path='/viewstudents' component={StudentList}/>
+            <PrivateRoute path='/viewprojects/:id' component={ViewProject} />
+            <PrivateRoute exact path='/viewprojects' component={ProjectList}/>
+            <PrivateRoute exact path='/viewreminders' component={ReminderList}/>
         </>
     );
 }
