@@ -36,7 +36,7 @@ const Login = (props) => {
       .then(res=> {
           console.log("login successfull", res)
           localStorage.setItem("token", res.data.token);
-          localStorage.setItem("professorID", res.data.id);
+          localStorage.setItem("professorID", res.data.user.id);
           history.push("/dashboard")
       })
       .catch(err=>{
