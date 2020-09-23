@@ -17,7 +17,7 @@ const SessionContainer = ({getInitialData}) => {
     return (
         <>
             <PrivateRoute path='/dashboard' component={Dashboard}/>
-            <PrivateRoute path='/viewstudents/:id' component={ViewStudent}/>
+            {/*<PrivateRoute path='/viewstudents/:id' component={ViewStudent}/> students currently can't be updated or deleted in API, so disable this route */}
             <PrivateRoute exact path='/viewstudents' component={StudentList}/>
             <PrivateRoute path='/viewprojects/:id' component={ViewProject} />
             <PrivateRoute exact path='/viewprojects' component={ProjectList}/>

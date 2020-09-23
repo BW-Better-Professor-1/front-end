@@ -38,7 +38,8 @@ export const getInitialData = () => {
         
         axiosWithAuth().get(endpoints[DATA_REMINDERS])
         .then(response => {
-            dispatch({type: SET_ARRAY, payload: { store: DATA_REMINDERS, data: response.data}});
+            console.log(response.data.data);
+            dispatch({type: SET_ARRAY, payload: { store: DATA_REMINDERS, data: response.data.data}});
         })
         .catch(error => {
             console.log(error);
