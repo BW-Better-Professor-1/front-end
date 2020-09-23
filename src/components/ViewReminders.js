@@ -26,7 +26,7 @@ function ReminderList ({reminders}) { // see ViewProject for comments on Redux s
         <>
             <h1>My Reminders</h1>
             <Reminders reminders={reminders} />
-            <AddReminder postTo={postTo} />
+            <AddReminder />
             
        
         </>
@@ -38,7 +38,4 @@ export default connect((state) => { return {
     reminders: state.reminders,
 }},{
     //actionMakers
-    postTo,
-    putTo,
-    deleteFrom,
 })(ReminderList);

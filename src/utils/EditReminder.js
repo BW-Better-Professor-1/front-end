@@ -3,6 +3,8 @@ import axiosWithAuth from "./axiosWithAuth";
 import {useHistory} from 'react-router-dom';
 import {LoginForm, FormField, FormInfo, Button, Input} from '../components/styled-components';
 import { DATA_REMINDERS } from "../store/actions";
+import { postTo, putTo, deleteFrom } from '../store/actions';
+import {connect} from "react-redux";
 
 const defaultValues = {
     title: "",
@@ -102,4 +104,9 @@ const ReminderForm = ({postTo}) => {
     )
 }
 
-export default ReminderForm;
+export default connect(() => { return {
+    //props
+}},{
+    //actionMakers
+    postTo,
+})(ReminderForm);
