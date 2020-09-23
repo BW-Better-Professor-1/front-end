@@ -11,14 +11,14 @@ export const DATA_PROJECTS = "projects";
 export const DATA_REMINDERS = "reminders";
 
 const endpoints = {
-    DATA_STUDENTS: "students",
-    DATA_PROJECTS: "projects",
-    DATA_REMINDERS: "reminders",
+    [DATA_STUDENTS]: "students",
+    [DATA_PROJECTS]: "projects",
+    [DATA_REMINDERS]: "reminders",
 }
 
 export const getInitialData = () => {
     return(dispatch) => {
-        axiosWithAuth().get(endpoints.DATA_STUDENTS)
+        axiosWithAuth().get(endpoints[DATA_STUDENTS])
         .then(response => {
             dispatch({type: SET_ARRAY, payload: { store: DATA_STUDENTS, data: response.data}});
         })
@@ -27,7 +27,7 @@ export const getInitialData = () => {
             dispatch({type: SET_ERROR, data: error});
         })
         
-        axiosWithAuth().get(endpoints.DATA_PROJECTS)
+        axiosWithAuth().get(endpoints[DATA_PROJECTS])
         .then(response => {
             dispatch({type: SET_ARRAY, payload: { store: DATA_PROJECTS, data: response.data}});
         })
@@ -36,7 +36,7 @@ export const getInitialData = () => {
             dispatch({type: SET_ERROR, data: error});
         })
         
-        axiosWithAuth().get(endpoints.DATA_REMINDERS)
+        axiosWithAuth().get(endpoints[DATA_REMINDERS])
         .then(response => {
             dispatch({type: SET_ARRAY, payload: { store: DATA_REMINDERS, data: response.data}});
         })
@@ -52,7 +52,7 @@ export const postTo = (store, data) => {
     if(store === "students") endpoint = `students/register`;
     if(store === "projects") endpoint = `students/${data.student_id}/add-project`
 
-    console.log("POST", store, endpoint, data);
+    //console.log("POST", store, endpoint, data);
 
     return(dispatch) => {
         axiosWithAuth().post(endpoint, data)
@@ -81,10 +81,11 @@ export const putTo = (store, data) => {
 }
 
 export const deleteFrom = (store, id) => {
+    //console.log("DELETE", store, id);
     return(dispatch) => {
-        axiosWithAuth().delete(`${endpoints.store}/${id}`)
+        axiosWithAuth().delete(`${endpoints[store]}/${id}`)
         .then(response => {
-            dispatch({type:FILTER_FROM, payload: {store: store, data: response.data}});
+            dispatch({type:FILTER_FROM, payload: {store: store, id: id}});
         })
         .catch(error => {
             console.log(error);

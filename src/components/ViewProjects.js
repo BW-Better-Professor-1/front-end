@@ -3,11 +3,11 @@ import AddProject from '../utils/EditProject';
 import Projects from '../utils/Projects';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import {FormField, LoginForm} from './styled-components';
-import { postTo, putTo, deleteFrom } from '../store/actions';
+import { postTo, putTo, deleteFrom, DATA_PROJECTS } from '../store/actions';
 import { useParams } from 'react-router';
 import {connect} from "react-redux";
 
-function ProjectList ({projects}) { // props here are linked by connect() to the Redux store
+function ProjectList ({projects, deleteFrom}) { // props here are linked by connect() to the Redux store
     //const [trigger, setTrigger] = useState(false); // Redux state is global, so will automatically trigger re-renders where appropriate
     //const [projects, setProjects] = useState([]);
     const {id} = useParams();
@@ -25,11 +25,16 @@ function ProjectList ({projects}) { // props here are linked by connect() to the
 
     },[trigger])*/
 
+    const deleteProject = id => {
+        deleteFrom(DATA_PROJECTS, id);
+        
+    }
+
     return( 
 
         <>
                 <h1>My Projects</h1>
-                <Projects projects={projects}/>
+                <Projects projects={projects} deleteProject={deleteProject} />
                 <AddProject id={id} />
                 
 
