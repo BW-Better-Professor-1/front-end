@@ -8,7 +8,7 @@ const Students = props => {
           <Link to={`/projectlist/${student.studentId}`}>
           <div className="student" key={student.studentId}>
             <h2>{student.name}</h2>
-            <p>{student.email}</p>
+            <p>{student.id}</p>
           </div>
           </Link>
         ))}
