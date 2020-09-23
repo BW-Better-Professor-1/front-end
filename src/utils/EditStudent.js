@@ -2,14 +2,18 @@ import React, {useState} from "react";
 import {useHistory} from 'react-router-dom';
 import axiosWithAuth from "./axiosWithAuth";
 import {LoginForm, FormField, FormInfo, Button, Input} from '../components/styled-components';
-import { DATA_STUDENTS } from "../store/actions";
+import { DATA_STUDENTS, postTo } from "../store/actions";
+import {connect} from "react-redux";
+
+const defaultValues = {
+    name: "",
+    password: "",
+    confirmPassword: "",
+}
 
 const StudentForm = props => {
     const history = useHistory('');
-    const [student, setStudent] = useState({
-        studentName: "",
-        studentEmail: ""
-    });
+    const [student, setStudent] = useState(defaultValues);
 
     const handleChanges = e => {
         setStudent({...student, [e.target.name]: e.target.value})
@@ -19,9 +23,9 @@ const StudentForm = props => {
     const submitForm = e => {
         e.preventDefault();
         const newStudent={
+            name: student.name,
+            password: student.password,
             professor_id: localStorage.getItem('professorID'),
-            name: student.studentName,
-            email: student.studentEmail
         }
         console.log(newStudent);
      
@@ -35,7 +39,7 @@ const StudentForm = props => {
         .catch(err => {
             console.log(`Error: ${err}`)
         })*/
-        setStudent({studentName: "", studentEmail: ""});
+        setStudent(defaultValues);
     };
 
     return (
@@ -45,26 +49,26 @@ const StudentForm = props => {
             <Input 
                 id= "studentName"
                 type="text"
-                name= "studentName"
+                name= "name"
                 onChange={handleChanges}
-                value={student.studentName}
+                value={student.name}
             />
 
-            <label htmlFor='studentEmail'>Student Email</label>
+            <label htmlFor='password'>Password</label>
             <Input 
-                id= "studentEmail"
+                id= "password"
                 type="text"
-                name= "studentEmail"
+                name= "password"
                 onChange={handleChanges}
-                value={student.studentEmail}
+                value={student.password}
             />
-            <label htmlFor='confirmStudentEmail'>Confirm Student Email</label>
+            <label htmlFor='confirmPassword'>Confirm Password</label>
             <Input 
-                id= "confirmStudentEmail"
+                id= "confirmPassword"
                 type="text"
-                name= "confirmStudentEmail"
+                name= "confirmPassword"
                 onChange={handleChanges}
-                value={student.confirmStudentEmail}
+                value={student.confirmPassword}
             />
             </FormInfo>
             <Button type='submit'>Add Student</Button>
@@ -72,4 +76,9 @@ const StudentForm = props => {
     )
 }
 
-export default StudentForm;
+export default connect(() => { return {
+    //props
+}},{
+    //actionMakers
+    postTo,
+})(StudentForm);
