@@ -3,12 +3,8 @@ import {LoginForm, FormField, FormInfo, Button, Input} from '../components/style
 import StudentList from './ViewStudents';
 import {useHistory} from 'react-router-dom';
 import {connect} from "react-redux";
-import { getInitialData } from '../store/actions';
 
-function Dashboard ({students, getInitialData}) {
-    useEffect(() => {
-        getInitialData();
-    }, [])
+function Dashboard ({students}) {
 
     const history = useHistory();
 
@@ -29,5 +25,4 @@ export default connect((state) => { return {
     students: state.students,
 }},{
     //actionMakers
-    getInitialData
 })(Dashboard);
