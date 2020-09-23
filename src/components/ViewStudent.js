@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {useHistory, useParams} from 'react-router-dom';
+import {Link, useHistory, useParams} from 'react-router-dom';
 import {LoginForm, FormField, FormInfo, Button, Input} from '../components/styled-components';
 import { DATA_STUDENTS, putTo } from "../store/actions";
 import {connect} from "react-redux";
