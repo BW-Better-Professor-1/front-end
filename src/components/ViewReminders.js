@@ -23,15 +23,13 @@ function ReminderList ({reminders}) { // see ViewProject for comments on Redux s
 
 
     return(
-        <LoginForm>
-        <FormField>
- 
+        <>
             <h1>My Reminders</h1>
-            <AddReminder postTo={postTo} />
             <Reminders reminders={reminders} />
+            <AddReminder postTo={postTo} />
+            
        
-        </FormField>
-    </LoginForm>
+        </>
     )
 }
 

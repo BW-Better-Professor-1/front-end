@@ -7,7 +7,7 @@ const Projects = pr => {
         {pr.projects.map(project => (
           <div className="project" key={project.id}>
             <h2>{project.project_name}</h2>
-            <p>{project.project_description}</p>
+            <p>{project.description}</p>
           </div>
         ))}
       </div>

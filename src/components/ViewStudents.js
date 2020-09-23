@@ -10,7 +10,7 @@ function StudentList ({students}) { // see ViewProject for comments on Redux sta
 
     //const [students, setStudents] = useState([]);
     //const [trigger, setTrigger] = useState(false);
-    const id = localStorage.getItem('professorID')
+    const id = localStorage.getItem('professor_id')
     /*useEffect(() => {
         axiosWithAuth().get(`users/${id}/students`)
         
@@ -24,15 +24,16 @@ function StudentList ({students}) { // see ViewProject for comments on Redux sta
     },[trigger])*/
 
     return(
-        <LoginForm>
-        <FormField>
-      
+        
+        
+      <>
             <h1>My Students</h1>
-            <StudentForm postTo={postTo} />
             <Students students={students}/>
+            <StudentForm postTo={postTo} />
+            
       
-        </FormField>
-    </LoginForm>
+        </>
+    
     )
 }
 
