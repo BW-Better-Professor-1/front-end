@@ -30,7 +30,7 @@ function ProjectList ({projects}) { // props here are linked by connect() to the
         <>
                 <h1>My Projects</h1>
                 <Projects projects={projects}/>
-                <AddProject id={id} postTo={postTo} />
+                <AddProject id={id} />
                 
 
            </>

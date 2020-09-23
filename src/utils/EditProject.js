@@ -3,13 +3,19 @@ import axiosWithAuth from './axiosWithAuth';
 import {LoginForm, FormField, FormInfo, Button, Input} from '../components/styled-components';
 import Projects from './Students';
 import { DATA_PROJECTS } from '../store/actions';
+import { postTo, putTo, deleteFrom } from '../store/actions';
+import {connect} from "react-redux";
+
+const defaultValues = { // fields match the "Projects data structure" in backend README
+    project_name: "",
+    description: "",
+    due_date: "",
+    student_id: 1, // until we make a working student dropdown, student #1 gets blamed for everything.
+}
 
 const ProjectForm = ({id, postTo}) => {
 
-    const [project, setProject] = useState({
-        title: "",
-        notes: ""
-    });
+    const [project, setProject] = useState(defaultValues);
 
     const handleChanges = e => {
         setProject({...project, [e.target.name]: e.target.value})
@@ -19,9 +25,9 @@ const ProjectForm = ({id, postTo}) => {
     const submitForm = e => {
         e.preventDefault();
         const newProject ={
-            student_id: id,
-            title: project.title,
-            notes: project.notes
+            ...project,
+            professor_id: id,
+            completed: false,
         }
         console.log(newProject)
 
@@ -33,7 +39,7 @@ const ProjectForm = ({id, postTo}) => {
             pr.setTrigger(!pr.trigger)
             
         })*/
-        setProject({title: "", notes: ""});
+        setProject(defaultValues);
     };
 
     return (
@@ -43,29 +49,29 @@ const ProjectForm = ({id, postTo}) => {
             <Input
                 id= "title"
                 type="text"
-                name= "title"
+                name= "project_name"
                 onChange={handleChanges}
-                value={project.title}
+                value={project.project_name}
             />
 
-            <label htmlFor='date'>Project Due Date</label>
+            <label htmlFor='date'>Due Date</label>
             <Input
             
                 id= "date"
                 type="text"
-                name= "date"
+                name= "due_date"
                 onChange={handleChanges}
-                value={project.date}
+                value={project.due_date}
                 
             />
-            <label htmlFor='reminder'>Reminders</label>
+            <label htmlFor='reminder'>Description</label>
             <Input
             
                 id= "reminder"
                 type="text"
-                name= "reminder"
+                name= "description"
                 onChange={handleChanges}
-                value={project.reminder}
+                value={project.description}
                 
             />
             </FormInfo>
@@ -74,4 +80,13 @@ const ProjectForm = ({id, postTo}) => {
     )
 }
 
-export default ProjectForm;
+//export default ProjectForm;
+
+export default connect(() => { return {
+    //props
+}},{
+    //actionMakers
+    postTo,
+    putTo,
+    deleteFrom,
+})(ProjectForm);
