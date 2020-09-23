@@ -11,8 +11,8 @@ function Dashboard ({students}) {
     return(
         <FormField>
             <h1>Dashboard</h1>
-            <Button onClick={()=>history.push("/studentlist")}>Go to Student List</Button>
-            <Button onClick={()=>history.push("/reminderlist")}>Go To Reminders</Button>
+            <Button onClick={()=>history.push("/viewstudents")}>Go to Student List</Button>
+            <Button onClick={()=>history.push("/viewreminders")}>Go To Reminders</Button>
             <div>
                 {students && students.map(item => <p key={item.id}>{item.name}</p>)}
             </div>
