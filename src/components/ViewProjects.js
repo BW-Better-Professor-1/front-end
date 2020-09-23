@@ -27,14 +27,13 @@ function ProjectList ({projects}) { // props here are linked by connect() to the
 
     return( 
 
-        <LoginForm>
-            <FormField>
+        <>
                 <h1>My Projects</h1>
-                <AddProject id={id} postTo={postTo} />
                 <Projects projects={projects}/>
+                <AddProject id={id} postTo={postTo} />
+                
 
-            </FormField>
-        </LoginForm>
+           </>
     )
 }
 
