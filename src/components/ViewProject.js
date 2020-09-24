@@ -13,7 +13,7 @@ const defaultValues = {
     student_id: 1,
 }
 
-const ViewProject = ({projects, putTo}) => {
+const ViewProject = ({projects, putTo, students}) => {
     const {id} = useParams();
     const [project, setProject] = useState(defaultValues);
     const history = useHistory();
@@ -73,6 +73,17 @@ const ViewProject = ({projects, putTo}) => {
                 value={project.description}
                 
             />
+            <label htmlFor="student_id">Student</label>
+            <select
+                id="student_id"
+                name="student_id"
+                onChange={handleChanges}
+                value={project.student_id}
+            >
+                {students && students.map(item => 
+                    <option key={item.id} value={item.id}>{item.name}</option>
+                )}
+            </select>            
             </FormInfo>
             <Button type='submit'>Save Project</Button>
             <Link to="/viewprojects"><Button>Back to Projects</Button></Link>
@@ -85,6 +96,7 @@ const ViewProject = ({projects, putTo}) => {
 export default connect((state) => { return {
     //props
     projects: state.projects,
+    students: state.students,
 }},{
     //actionMakers
     putTo,

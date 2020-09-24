@@ -14,7 +14,7 @@ const defaultValues = {
     sent: false,
 }
 
-const ReminderForm = ({postTo}) => {
+const ReminderForm = ({postTo, students}) => {
     const history = useHistory('');
     const [reminder, setReminder] = useState(defaultValues);
 
@@ -88,10 +88,19 @@ const ReminderForm = ({postTo}) => {
                 value={reminder.sent}
                 
             />
-
+            <label htmlFor="student_id">Student</label>
+            <select
+                id="student_id"
+                name="student_id"
+                onChange={handleChanges}
+                value={reminder.student_id}
+            >
+                {students && students.map(item => 
+                    <option key={item.id} value={item.id}>{item.name}</option>
+                )}
+            </select>
             </FormInfo>
-{/* 
-            <label htmlFor='body'>Reminder Details</label>
+            {/*<label htmlFor='body'>Reminder Details</label>
             <textarea 
                 id= "body"
                 type="text"
@@ -104,8 +113,9 @@ const ReminderForm = ({postTo}) => {
     )
 }
 
-export default connect(() => { return {
+export default connect((state) => { return {
     //props
+    students: state.students,
 }},{
     //actionMakers
     postTo,

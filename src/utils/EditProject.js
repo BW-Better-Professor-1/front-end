@@ -10,10 +10,10 @@ const defaultValues = { // fields match the "Projects data structure" in backend
     project_name: "",
     description: "",
     due_date: "",
-    student_id: 1, // until we make a working student dropdown, student #1 gets blamed for everything.
+    student_id: 1,
 }
 
-const ProjectForm = ({id, postTo}) => {
+const ProjectForm = ({id, postTo, students}) => {
 
     const [project, setProject] = useState(defaultValues);
 
@@ -27,6 +27,7 @@ const ProjectForm = ({id, postTo}) => {
         const newProject ={
             ...project,
             professor_id: id,
+            student_id: Number(project.student_id),
             completed: false,
         }
         console.log(newProject)
@@ -74,6 +75,17 @@ const ProjectForm = ({id, postTo}) => {
                 value={project.description}
                 
             />
+            <label htmlFor="student_id">Student</label>
+            <select
+                id="student_id"
+                name="student_id"
+                onChange={handleChanges}
+                value={project.student_id}
+            >
+                {students && students.map(item => 
+                    <option key={item.id} value={item.id}>{item.name}</option>
+                )}
+            </select>
             </FormInfo>
             <Button type='submit'>Add Project</Button>
         </form>
@@ -82,8 +94,9 @@ const ProjectForm = ({id, postTo}) => {
 
 //export default ProjectForm;
 
-export default connect(() => { return {
+export default connect((state) => { return {
     //props
+    students: state.students
 }},{
     //actionMakers
     postTo,
