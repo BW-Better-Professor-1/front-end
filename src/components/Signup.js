@@ -42,7 +42,7 @@ function Signup()  {
                 'password': password.toString(),
             })
             .then(response => {
-                console.log('User successfully created.', response)
+                //console.log('User successfully created.', response)
                 localStorage.setItem('token', response.data.token);
                 localStorage.setItem('professorID', response.data.id)
                 history.push('/dashboard')

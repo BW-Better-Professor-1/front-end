@@ -29,7 +29,7 @@ const Login = (props) => {
     const onSubmit = e => {
 
       const values = getValues();
-      console.log(values);
+      //console.log(values);
       axiosWithAuth()
       .post(`auth/login`, values)
       .then(res=> {
