@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {useHistory} from 'react-router-dom';
-import axios from 'axios';
 import axiosWithAuth from '../utils/axiosWithAuth';
 
 import {useForm} from 'react-hook-form';
@@ -43,7 +42,7 @@ function Signup()  {
                 'password': password.toString(),
             })
             .then(response => {
-                console.log('User successfully created.', response)
+                //console.log('User successfully created.', response)
                 localStorage.setItem('token', response.data.token);
                 localStorage.setItem('professorID', response.data.id)
                 history.push('/dashboard')
@@ -72,7 +71,7 @@ function Signup()  {
                         placeholder='Enter full name'
                         ref={register({required: "Must enter full name"})}
                     />
-                    {errors.name && console.log('Signup Name error: ', errors.name) && <p>{errors.name.message}</p>}
+                    {errors.name && <p>{errors.name.message}</p>}
                 </FormInfo>
                 {/* Email */}
                 <FormInfo>
@@ -86,7 +85,7 @@ function Signup()  {
                         placeholder='Enter email address'
                         ref={register({required: "Must enter a valid email address"})}
                     />
-                    {errors.email && console.log('Signup Email error: ', errors.email) && <p>{errors.email.message}</p>}
+                    {errors.email && <p>{errors.email.message}</p>}
                 </FormInfo>
                 {/* Password */}
                 <FormInfo>
@@ -101,7 +100,7 @@ function Signup()  {
                         ref={register({required: "Must enter a password",
                         minLength: {value: 7, message: "Must enter a password of at least 7 characters"}})}
                     />
-                    {errors.password && console.log('Signup Password error: ', errors.password) && <p>{errors.password.message}</p>}
+                    {errors.password && <p>{errors.password.message}</p>}
                 </FormInfo>
                 <FormInfo>
                 {/* Confirm Password */}
@@ -115,7 +114,7 @@ function Signup()  {
                         ref={register({required: "Must confirm password",
                         minLength: {value: 7, message: "Must enter a password of at least 7 characters"}})}
                     />
-                    {errors.confirmPassword && console.log('Signup Confirm Password error: ', errors.confirmPassword) && <p>{errors.confirmPassword.message}</p>}
+                    {errors.confirmPassword && <p>{errors.confirmPassword.message}</p>}
                     {notMatching}
                 </FormInfo>
                 <Button>Create Account</Button>

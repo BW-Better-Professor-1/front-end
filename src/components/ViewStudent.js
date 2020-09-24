@@ -25,7 +25,7 @@ const ViewStudent = ({students, putTo}) => {
 
     const handleChanges = e => {
         setStudent({...student, [e.target.name]: e.target.value})
-        console.log(student);
+        //console.log(student);
     };
 
     const submitForm = e => {
@@ -35,7 +35,7 @@ const ViewStudent = ({students, putTo}) => {
             password: student.password,
             professor_id: localStorage.getItem('professorID'),
         }
-        console.log(newStudent);
+        //console.log(newStudent);
      
         putTo(DATA_STUDENTS, newStudent);
     };

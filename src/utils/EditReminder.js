@@ -1,9 +1,7 @@
 import React, {useState} from "react";
-import axiosWithAuth from "./axiosWithAuth";
-import {useHistory} from 'react-router-dom';
-import {LoginForm, FormField, FormInfo, Button, Input} from '../components/styled-components';
+import {FormInfo, Button, Input} from '../components/styled-components';
 import { DATA_REMINDERS } from "../store/actions";
-import { postTo, putTo, deleteFrom } from '../store/actions';
+import { postTo } from '../store/actions';
 import {connect} from "react-redux";
 
 const defaultValues = {
@@ -14,13 +12,12 @@ const defaultValues = {
     sent: false,
 }
 
-const ReminderForm = ({postTo}) => {
-    const history = useHistory('');
+const ReminderForm = ({postTo, students}) => {
     const [reminder, setReminder] = useState(defaultValues);
 
     const handleChanges = e => {
         setReminder({...reminder, [e.target.name]: e.target.value})
-        console.log(reminder);
+        //console.log(reminder);
     };
 
     const submitForm = e => {
@@ -30,7 +27,7 @@ const ReminderForm = ({postTo}) => {
             professor_id: localStorage.getItem('professorID'),
         }
         
-        console.log(newReminder)
+        //console.log(newReminder)
 
         postTo(DATA_REMINDERS, newReminder);
         setReminder(defaultValues);
@@ -88,10 +85,19 @@ const ReminderForm = ({postTo}) => {
                 value={reminder.sent}
                 
             />
-
+            <label htmlFor="student_id">Student</label>
+            <select
+                id="student_id"
+                name="student_id"
+                onChange={handleChanges}
+                value={reminder.student_id}
+            >
+                {students && students.map(item => 
+                    <option key={item.id} value={item.id}>{item.name}</option>
+                )}
+            </select>
             </FormInfo>
-{/* 
-            <label htmlFor='body'>Reminder Details</label>
+            {/*<label htmlFor='body'>Reminder Details</label>
             <textarea 
                 id= "body"
                 type="text"
@@ -104,8 +110,9 @@ const ReminderForm = ({postTo}) => {
     )
 }
 
-export default connect(() => { return {
+export default connect((state) => { return {
     //props
+    students: state.students,
 }},{
     //actionMakers
     postTo,

@@ -1,5 +1,4 @@
-import axios from 'axios';
-import React, {useState} from 'react';
+import React from 'react';
 import {useHistory} from 'react-router-dom';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import {useForm} from 'react-hook-form';
@@ -14,27 +13,27 @@ const Login = (props) => {
       handleSubmit,
       errors,
       getValues,
-      formState: { isSubmitting }
+      //formState: { isSubmitting }
     } = useForm();
 
-    const [user, setUser] = useState({
+    /*const [user, setUser] = useState({
       name: '',
       password: ''
-    })
+    })*/ // user info is kept in localstorage along with tokens
 
-    const handleChanges = e => {
+    /*const handleChanges = e => {
       setUser({...user, [e.target.name]: e.target.value})
       console.log(user);
-    }
+    }*/ // handled by the useForm hook
 
     const onSubmit = e => {
 
       const values = getValues();
-      console.log(values);
+      //console.log(values);
       axiosWithAuth()
       .post(`auth/login`, values)
       .then(res=> {
-          console.log("login successfull", res)
+          //console.log("login successfull", res)
           localStorage.setItem("token", res.data.token);
           localStorage.setItem("professorID", res.data.user.id);
           history.push("/dashboard")
@@ -52,11 +51,11 @@ const Login = (props) => {
           <FormInfo>
           <label htmlFor="name">Username</label>
           <Input className="styleInput3" id="name" placeholder="Enter Username Here" name="name" ref={register({required : true })} />
-          {errors.username && console.log('Login Username error: ', errors.username) && <p>{errors.username.message}</p>}
+          {errors.username && <p>{errors.username.message}</p>}
 
           <label htmlFor="password">Password</label>
           <Input className="styleInput3" id="password" placeholder="Enter Password Here" name="password" type="password" ref={register({required: true })} />
-          {errors.password && console.log('Login Password Error: ', errors.password) && <p>{errors.password.message}</p>}
+          {errors.password && <p>{errors.password.message}</p>}
         </FormInfo>
         <Button>
           Log In

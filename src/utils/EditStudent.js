@@ -1,7 +1,5 @@
 import React, {useState} from "react";
-import {useHistory} from 'react-router-dom';
-import axiosWithAuth from "./axiosWithAuth";
-import {LoginForm, FormField, FormInfo, Button, Input} from '../components/styled-components';
+import {FormInfo, Button, Input} from '../components/styled-components';
 import { DATA_STUDENTS, postTo } from "../store/actions";
 import {connect} from "react-redux";
 
@@ -12,12 +10,11 @@ const defaultValues = {
 }
 
 const StudentForm = props => {
-    const history = useHistory('');
     const [student, setStudent] = useState(defaultValues);
 
     const handleChanges = e => {
         setStudent({...student, [e.target.name]: e.target.value})
-        console.log(student);
+        //console.log(student);
     };
 
     const submitForm = e => {
@@ -27,7 +24,7 @@ const StudentForm = props => {
             password: student.password,
             professor_id: localStorage.getItem('professorID'),
         }
-        console.log(newStudent);
+        //console.log(newStudent);
      
         props.postTo(DATA_STUDENTS, newStudent);
         /*axiosWithAuth().post('/students', newStudent)

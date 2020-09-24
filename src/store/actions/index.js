@@ -38,7 +38,6 @@ export const getInitialData = () => {
         
         axiosWithAuth().get(endpoints[DATA_REMINDERS])
         .then(response => {
-            console.log(response.data.data);
             dispatch({type: SET_ARRAY, payload: { store: DATA_REMINDERS, data: response.data.data}});
         })
         .catch(error => {
@@ -48,7 +47,7 @@ export const getInitialData = () => {
     }
 }
 
-export const postTo = (store, data) => {
+export const postTo = (store, data, history, goto) => {
     let endpoint = endpoints[store];
     if(store === "students") endpoint = `students/register`;
     if(store === "projects") endpoint = `students/${data.student_id}/add-project`
@@ -59,8 +58,10 @@ export const postTo = (store, data) => {
     return(dispatch) => {
         axiosWithAuth().post(endpoint, data)
         .then(response => {
-            console.log(response);
             dispatch({type: APPEND, payload: {store: store, data: response.data}});
+            if(history && goto){
+                history.push(goto);
+            }
         })
         .catch(error => {
             console.log(error);
@@ -69,11 +70,14 @@ export const postTo = (store, data) => {
     }
 }
 
-export const putTo = (store, data) => {
+export const putTo = (store, data, history, goto) => {
     return(dispatch) => {
         axiosWithAuth().put(`${endpoints[store]}/${data.id}`, data)
         .then(response => {
             dispatch({type:FILTER_INTO, payload: {store: store, data: response.data}});
+            if(history && goto){
+                history.push(goto);
+            }
         })
         .catch(error => {
             console.log(error);
@@ -82,12 +86,15 @@ export const putTo = (store, data) => {
     }
 }
 
-export const deleteFrom = (store, id) => {
+export const deleteFrom = (store, id, history, goto) => {
     //console.log("DELETE", store, id);
     return(dispatch) => {
         axiosWithAuth().delete(`${endpoints[store]}/${id}`)
         .then(response => {
             dispatch({type:FILTER_FROM, payload: {store: store, id: id}});
+            if(history && goto){
+                history.push(goto);
+            }
         })
         .catch(error => {
             console.log(error);

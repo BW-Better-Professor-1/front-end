@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {LoginForm, FormField, FormInfo, Button, Input} from '../components/styled-components';
+import {FormInfo, Button, Input} from '../components/styled-components';
 import { DATA_PROJECTS } from '../store/actions';
-import { postTo, putTo, deleteFrom } from '../store/actions';
+import { putTo } from '../store/actions';
 import {connect} from "react-redux";
 import { useHistory, useParams } from 'react-router';
 import { Link } from 'react-router-dom';
@@ -13,18 +13,18 @@ const defaultValues = {
     student_id: 1,
 }
 
-const ViewProject = ({projects, putTo}) => {
+const ViewProject = ({projects, putTo, students}) => {
     const {id} = useParams();
     const [project, setProject] = useState(defaultValues);
     const history = useHistory();
 
     const handleChanges = e => {
         setProject({...project, [e.target.name]: e.target.value})
-        console.log(project);
+        //console.log(project);
     };
 
     useEffect(() => {
-        console.log(id, projects)
+        //console.log(id, projects)
 
         for(let i = 0; i < projects.length; i++){
             if(String(projects[i].id) === id){
@@ -37,8 +37,8 @@ const ViewProject = ({projects, putTo}) => {
     const submitForm = e => {
         e.preventDefault();
 
-        putTo(DATA_PROJECTS, project);
-        history.push("/viewprojects");
+        putTo(DATA_PROJECTS, project, history, "/viewprojects");
+        //history.push("/viewprojects");
     };
 
     return (
@@ -73,6 +73,17 @@ const ViewProject = ({projects, putTo}) => {
                 value={project.description}
                 
             />
+            <label htmlFor="student_id">Student</label>
+            <select
+                id="student_id"
+                name="student_id"
+                onChange={handleChanges}
+                value={project.student_id}
+            >
+                {students && students.map(item => 
+                    <option key={item.id} value={item.id}>{item.name}</option>
+                )}
+            </select>            
             </FormInfo>
             <Button type='submit'>Save Project</Button>
             <Link to="/viewprojects"><Button>Back to Projects</Button></Link>
@@ -85,6 +96,7 @@ const ViewProject = ({projects, putTo}) => {
 export default connect((state) => { return {
     //props
     projects: state.projects,
+    students: state.students,
 }},{
     //actionMakers
     putTo,

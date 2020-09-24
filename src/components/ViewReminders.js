@@ -1,16 +1,12 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import AddReminder from '../utils/EditReminder';
 import Reminders from '../utils/Reminders';
-import axiosWithAuth from '../utils/axiosWithAuth';
-import { FormField, LoginForm } from './styled-components';
-import { postTo, putTo, deleteFrom } from '../store/actions';
 import {connect} from "react-redux";
 
 function ReminderList ({reminders}) { // see ViewProject for comments on Redux state
-    //const [trigger, setTrigger] = useState(false);
-    //const [reminders, setReminders] = useState([]);
-    const id = localStorage.getItem('professorID')
-    /*useEffect(() => {
+    /*const [trigger, setTrigger] = useState(false);
+    const [reminders, setReminders] = useState([]);
+    useEffect(() => {
         axiosWithAuth().get(`/reminders`)
         .then(response =>{
             console.log('Reminder Created: ', response.data)

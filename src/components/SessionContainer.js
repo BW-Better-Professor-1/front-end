@@ -6,7 +6,7 @@ import StudentList from './ViewStudents';
 import ProjectList from './ViewProjects';
 import ReminderList from './ViewReminders';
 import { getInitialData } from '../store/actions';
-import ViewStudent from './ViewStudent';
+//import ViewStudent from './ViewStudent';
 import ViewProject from './ViewProject';
 
 const SessionContainer = ({getInitialData}) => {
