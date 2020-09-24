@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {LoginForm, FormField, FormInfo, Button, Input} from '../components/styled-components';
+import {FormInfo, Button, Input} from '../components/styled-components';
 import { DATA_PROJECTS } from '../store/actions';
-import { postTo, putTo, deleteFrom } from '../store/actions';
+import { putTo } from '../store/actions';
 import {connect} from "react-redux";
 import { useHistory, useParams } from 'react-router';
 import { Link } from 'react-router-dom';

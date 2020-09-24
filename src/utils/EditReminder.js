@@ -1,9 +1,7 @@
 import React, {useState} from "react";
-import axiosWithAuth from "./axiosWithAuth";
-import {useHistory} from 'react-router-dom';
-import {LoginForm, FormField, FormInfo, Button, Input} from '../components/styled-components';
+import {FormInfo, Button, Input} from '../components/styled-components';
 import { DATA_REMINDERS } from "../store/actions";
-import { postTo, putTo, deleteFrom } from '../store/actions';
+import { postTo } from '../store/actions';
 import {connect} from "react-redux";
 
 const defaultValues = {
@@ -15,7 +13,6 @@ const defaultValues = {
 }
 
 const ReminderForm = ({postTo, students}) => {
-    const history = useHistory('');
     const [reminder, setReminder] = useState(defaultValues);
 
     const handleChanges = e => {

@@ -1,7 +1,5 @@
 import React, {useState} from "react";
-import {useHistory} from 'react-router-dom';
-import axiosWithAuth from "./axiosWithAuth";
-import {LoginForm, FormField, FormInfo, Button, Input} from '../components/styled-components';
+import {FormInfo, Button, Input} from '../components/styled-components';
 import { DATA_STUDENTS, postTo } from "../store/actions";
 import {connect} from "react-redux";
 
@@ -12,7 +10,6 @@ const defaultValues = {
 }
 
 const StudentForm = props => {
-    const history = useHistory('');
     const [student, setStudent] = useState(defaultValues);
 
     const handleChanges = e => {

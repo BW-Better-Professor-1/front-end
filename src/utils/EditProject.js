@@ -1,7 +1,5 @@
 import React, {useState} from 'react';
-import axiosWithAuth from './axiosWithAuth';
-import {LoginForm, FormField, FormInfo, Button, Input} from '../components/styled-components';
-import Projects from './Students';
+import {FormInfo, Button, Input} from '../components/styled-components';
 import { DATA_PROJECTS } from '../store/actions';
 import { postTo, putTo, deleteFrom } from '../store/actions';
 import {connect} from "react-redux";

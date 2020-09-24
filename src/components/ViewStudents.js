@@ -1,17 +1,13 @@
-import React, {useState ,useEffect} from 'react';
+import React from 'react';
 import StudentForm from '../utils/EditStudent';
 import Students from '../utils/Students';
-import axiosWithAuth from '../utils/axiosWithAuth';
-import { FormField, LoginForm } from './styled-components';
 import { postTo, putTo, deleteFrom } from '../store/actions';
 import {connect} from "react-redux";
 
 function StudentList ({students}) { // see ViewProject for comments on Redux state
-
-    //const [students, setStudents] = useState([]);
-    //const [trigger, setTrigger] = useState(false);
-    const id = localStorage.getItem('professor_id')
-    /*useEffect(() => {
+    /*const [students, setStudents] = useState([]);
+    const [trigger, setTrigger] = useState(false);
+    useEffect(() => {
         axiosWithAuth().get(`users/${id}/students`)
         
         .then(response =>{

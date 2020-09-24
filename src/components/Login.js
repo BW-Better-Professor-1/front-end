@@ -1,5 +1,4 @@
-import axios from 'axios';
-import React, {useState} from 'react';
+import React from 'react';
 import {useHistory} from 'react-router-dom';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import {useForm} from 'react-hook-form';
@@ -14,18 +13,18 @@ const Login = (props) => {
       handleSubmit,
       errors,
       getValues,
-      formState: { isSubmitting }
+      //formState: { isSubmitting }
     } = useForm();
 
-    const [user, setUser] = useState({
+    /*const [user, setUser] = useState({
       name: '',
       password: ''
-    })
+    })*/ // user info is kept in localstorage along with tokens
 
-    const handleChanges = e => {
+    /*const handleChanges = e => {
       setUser({...user, [e.target.name]: e.target.value})
       console.log(user);
-    }
+    }*/ // handled by the useForm hook
 
     const onSubmit = e => {
 

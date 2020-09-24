@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react'
-import {LoginForm, FormField, FormInfo, Button, Input} from '../components/styled-components';
-import StudentList from './ViewStudents';
+import React from 'react'
+import {FormField, Button} from '../components/styled-components';
 import {useHistory} from 'react-router-dom';
 import {connect} from "react-redux";
 
