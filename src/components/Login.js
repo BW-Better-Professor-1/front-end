@@ -33,7 +33,7 @@ const Login = (props) => {
       axiosWithAuth()
       .post(`auth/login`, values)
       .then(res=> {
-          console.log("login successfull", res)
+          //console.log("login successfull", res)
           localStorage.setItem("token", res.data.token);
           localStorage.setItem("professorID", res.data.user.id);
           history.push("/dashboard")
@@ -51,11 +51,11 @@ const Login = (props) => {
           <FormInfo>
           <label htmlFor="name">Username</label>
           <Input className="styleInput3" id="name" placeholder="Enter Username Here" name="name" ref={register({required : true })} />
-          {errors.username && console.log('Login Username error: ', errors.username) && <p>{errors.username.message}</p>}
+          {errors.username && <p>{errors.username.message}</p>}
 
           <label htmlFor="password">Password</label>
           <Input className="styleInput3" id="password" placeholder="Enter Password Here" name="password" type="password" ref={register({required: true })} />
-          {errors.password && console.log('Login Password Error: ', errors.password) && <p>{errors.password.message}</p>}
+          {errors.password && <p>{errors.password.message}</p>}
         </FormInfo>
         <Button>
           Log In

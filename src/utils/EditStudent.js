@@ -14,7 +14,7 @@ const StudentForm = props => {
 
     const handleChanges = e => {
         setStudent({...student, [e.target.name]: e.target.value})
-        console.log(student);
+        //console.log(student);
     };
 
     const submitForm = e => {
@@ -24,7 +24,7 @@ const StudentForm = props => {
             password: student.password,
             professor_id: localStorage.getItem('professorID'),
         }
-        console.log(newStudent);
+        //console.log(newStudent);
      
         props.postTo(DATA_STUDENTS, newStudent);
         /*axiosWithAuth().post('/students', newStudent)

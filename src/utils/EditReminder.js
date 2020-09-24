@@ -17,7 +17,7 @@ const ReminderForm = ({postTo, students}) => {
 
     const handleChanges = e => {
         setReminder({...reminder, [e.target.name]: e.target.value})
-        console.log(reminder);
+        //console.log(reminder);
     };
 
     const submitForm = e => {
@@ -27,7 +27,7 @@ const ReminderForm = ({postTo, students}) => {
             professor_id: localStorage.getItem('professorID'),
         }
         
-        console.log(newReminder)
+        //console.log(newReminder)
 
         postTo(DATA_REMINDERS, newReminder);
         setReminder(defaultValues);

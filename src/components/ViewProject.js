@@ -20,11 +20,11 @@ const ViewProject = ({projects, putTo, students}) => {
 
     const handleChanges = e => {
         setProject({...project, [e.target.name]: e.target.value})
-        console.log(project);
+        //console.log(project);
     };
 
     useEffect(() => {
-        console.log(id, projects)
+        //console.log(id, projects)
 
         for(let i = 0; i < projects.length; i++){
             if(String(projects[i].id) === id){

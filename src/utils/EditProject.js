@@ -17,7 +17,7 @@ const ProjectForm = ({id, postTo, students}) => {
 
     const handleChanges = e => {
         setProject({...project, [e.target.name]: e.target.value})
-        console.log(project);
+        //console.log(project);
     };
 
     const submitForm = e => {
@@ -28,7 +28,7 @@ const ProjectForm = ({id, postTo, students}) => {
             student_id: Number(project.student_id),
             completed: false,
         }
-        console.log(newProject)
+        //console.log(newProject)
 
         postTo(DATA_PROJECTS, newProject); // calls an action (passed from ViewProjects) that sends the POST request, then adds the response to state
         
