@@ -36,7 +36,7 @@ const Login = (props) => {
       .then(res=> {
           console.log("login successfull", res)
           localStorage.setItem("token", res.data.token);
-          localStorage.setItem("professorID", res.data.id);
+          localStorage.setItem("professorID", res.data.user.id);
           history.push("/dashboard")
       })
       .catch(err=>{
@@ -61,7 +61,7 @@ const Login = (props) => {
         <Button>
           Log In
           </Button>
-        <div>Don't have an account? <span className="underline" onClick={()=>history.push("/registration")}>Create one here.</span></div>
+        <div>Don't have an account? <span className="underline" onClick={()=>history.push("/signup")}>Create one here.</span></div>
         </FormField>
     
     <div className="sectionContainer2">

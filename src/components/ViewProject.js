@@ -3,7 +3,7 @@ import {LoginForm, FormField, FormInfo, Button, Input} from '../components/style
 import { DATA_PROJECTS } from '../store/actions';
 import { postTo, putTo, deleteFrom } from '../store/actions';
 import {connect} from "react-redux";
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 
 const defaultValues = {
@@ -16,6 +16,7 @@ const defaultValues = {
 const ViewProject = ({projects, putTo}) => {
     const {id} = useParams();
     const [project, setProject] = useState(defaultValues);
+    const history = useHistory();
 
     const handleChanges = e => {
         setProject({...project, [e.target.name]: e.target.value})
@@ -37,6 +38,7 @@ const ViewProject = ({projects, putTo}) => {
         e.preventDefault();
 
         putTo(DATA_PROJECTS, project);
+        history.push("/viewprojects");
     };
 
     return (
@@ -73,7 +75,7 @@ const ViewProject = ({projects, putTo}) => {
             />
             </FormInfo>
             <Button type='submit'>Save Project</Button>
-            <Link to="viewprojects"><Button>Back to Projects</Button></Link>
+            <Link to="/viewprojects"><Button>Back to Projects</Button></Link>
         </form>
     )
 }

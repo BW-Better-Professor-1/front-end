@@ -3,14 +3,20 @@ import axiosWithAuth from "./axiosWithAuth";
 import {useHistory} from 'react-router-dom';
 import {LoginForm, FormField, FormInfo, Button, Input} from '../components/styled-components';
 import { DATA_REMINDERS } from "../store/actions";
+import { postTo, putTo, deleteFrom } from '../store/actions';
+import {connect} from "react-redux";
 
+const defaultValues = {
+    title: "",
+    body: "",
+    datetime: "",
+    student_id: 1,
+    sent: false,
+}
 
 const ReminderForm = ({postTo}) => {
     const history = useHistory('');
-    const [reminder, setReminder] = useState({
-        title: "",
-        body: ""
-    });
+    const [reminder, setReminder] = useState(defaultValues);
 
     const handleChanges = e => {
         setReminder({...reminder, [e.target.name]: e.target.value})
@@ -20,14 +26,15 @@ const ReminderForm = ({postTo}) => {
     const submitForm = e => {
         e.preventDefault();
         const newReminder = {
-            user_id: localStorage.getItem('professorID'),
-            message: reminder.title,
-            
+            ...reminder,
+            professor_id: localStorage.getItem('professorID'),
         }
         
         console.log(newReminder)
 
         postTo(DATA_REMINDERS, newReminder);
+        setReminder(defaultValues);
+
         /*axiosWithAuth().post('/reminders', newReminder)
         .then(response => {
             console.log('New reminder added to messages: ', response)
@@ -37,59 +44,48 @@ const ReminderForm = ({postTo}) => {
         .catch(err => {
             console.log(`Here is the error: ${err}`)
         })*/
-        setReminder({title: "", body: ""});
     };
 
     return (
         <form onSubmit={submitForm}>
             <FormInfo>
-            <label htmlFor='name'>Student Name</label>
+            <label htmlFor='title'>Message Title</label>
             <Input 
-                id= "name"
+                id= "title"
                 type="text"
-                name= "name"
+                name= "title"
                 onChange={handleChanges}
-                value={reminder.name}
+                value={reminder.title}
             />
 
-            <label htmlFor='date'>Reminder Date</label>
+            <label htmlFor='datetime'>Date</label>
             <Input
             
-                id= "date"
+                id= "datetime"
                 type="text"
-                name= "date"
+                name= "datetime"
                 onChange={handleChanges}
-                value={reminder.date}
+                value={reminder.datetime}
                 
             />
-            <label htmlFor='time'>Reminder Time</label>
+            <label htmlFor='body'>Text</label>
             <Input
             
-                id= "time"
+                id= "body"
                 type="text"
-                name= "time"
+                name= "body"
                 onChange={handleChanges}
-                value={reminder.time}
+                value={reminder.body}
                 
             />
-            <label htmlFor='info'>Reminder Text</label>
+            <label htmlFor='sent'>Send to student</label>
             <Input
             
-                id= "info"
-                type="text"
-                name= "info"
-                onChange={handleChanges}
-                value={reminder.info}
-                
-            />
-            <label htmlFor='check'>Send to student</label>
-            <Input
-            
-                id= "check"
+                id= "sent"
                 type="checkbox"
-                name= "check"
+                name= "sent"
                 onChange={handleChanges}
-                value={reminder.check}
+                value={reminder.sent}
                 
             />
 
@@ -108,4 +104,9 @@ const ReminderForm = ({postTo}) => {
     )
 }
 
-export default ReminderForm;
+export default connect(() => { return {
+    //props
+}},{
+    //actionMakers
+    postTo,
+})(ReminderForm);

@@ -13,7 +13,7 @@ export const DATA_REMINDERS = "reminders";
 const endpoints = {
     [DATA_STUDENTS]: "students",
     [DATA_PROJECTS]: "projects",
-    [DATA_REMINDERS]: "reminders",
+    [DATA_REMINDERS]: "messages",
 }
 
 export const getInitialData = () => {
@@ -38,7 +38,8 @@ export const getInitialData = () => {
         
         axiosWithAuth().get(endpoints[DATA_REMINDERS])
         .then(response => {
-            dispatch({type: SET_ARRAY, payload: { store: DATA_REMINDERS, data: response.data}});
+            console.log(response.data.data);
+            dispatch({type: SET_ARRAY, payload: { store: DATA_REMINDERS, data: response.data.data}});
         })
         .catch(error => {
             console.log(error);
@@ -48,9 +49,10 @@ export const getInitialData = () => {
 }
 
 export const postTo = (store, data) => {
-    let endpoint = endpoints.store;
+    let endpoint = endpoints[store];
     if(store === "students") endpoint = `students/register`;
     if(store === "projects") endpoint = `students/${data.student_id}/add-project`
+    if(store === "reminders") endpoint = `messages/${data.professor_id}`
 
     //console.log("POST", store, endpoint, data);
 
