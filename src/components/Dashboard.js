@@ -9,8 +9,8 @@ function Dashboard () {
     return(
         <FormField>
             <h1>Dashboard</h1>
-            <Button onClick={()=>history.push("/studentlist")}>Go to Student List</Button>
-            <Button onClick={()=>history.push("/reminderlist")}>Go To Reminders</Button>
+            <Button onClick={()=>history.push("/viewstudents")}>Go to Student List</Button>
+            <Button onClick={()=>history.push("/viewreminders")}>Go To Reminders</Button>
         </FormField>
     );
 }
