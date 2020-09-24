@@ -37,8 +37,8 @@ const ViewProject = ({projects, putTo}) => {
     const submitForm = e => {
         e.preventDefault();
 
-        putTo(DATA_PROJECTS, project);
-        history.push("/viewprojects");
+        putTo(DATA_PROJECTS, project, history, "/viewprojects");
+        //history.push("/viewprojects");
     };
 
     return (

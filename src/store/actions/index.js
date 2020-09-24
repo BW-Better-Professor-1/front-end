@@ -48,19 +48,21 @@ export const getInitialData = () => {
     }
 }
 
-export const postTo = (store, data) => {
+export const postTo = (store, data, history, goto) => {
     let endpoint = endpoints[store];
     if(store === "students") endpoint = `students/register`;
     if(store === "projects") endpoint = `students/${data.student_id}/add-project`
     if(store === "reminders") endpoint = `messages/${data.professor_id}`
 
-    //console.log("POST", store, endpoint, data);
+    console.log("POST", store, endpoint, data);
 
     return(dispatch) => {
         axiosWithAuth().post(endpoint, data)
         .then(response => {
-            console.log(response);
             dispatch({type: APPEND, payload: {store: store, data: response.data}});
+            if(history && goto){
+                history.push(goto);
+            }
         })
         .catch(error => {
             console.log(error);
@@ -69,11 +71,14 @@ export const postTo = (store, data) => {
     }
 }
 
-export const putTo = (store, data) => {
+export const putTo = (store, data, history, goto) => {
     return(dispatch) => {
         axiosWithAuth().put(`${endpoints[store]}/${data.id}`, data)
         .then(response => {
             dispatch({type:FILTER_INTO, payload: {store: store, data: response.data}});
+            if(history && goto){
+                history.push(goto);
+            }
         })
         .catch(error => {
             console.log(error);
@@ -82,12 +87,15 @@ export const putTo = (store, data) => {
     }
 }
 
-export const deleteFrom = (store, id) => {
+export const deleteFrom = (store, id, history, goto) => {
     //console.log("DELETE", store, id);
     return(dispatch) => {
         axiosWithAuth().delete(`${endpoints[store]}/${id}`)
         .then(response => {
             dispatch({type:FILTER_FROM, payload: {store: store, id: id}});
+            if(history && goto){
+                history.push(goto);
+            }
         })
         .catch(error => {
             console.log(error);
